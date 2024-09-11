@@ -8,7 +8,7 @@ const uScore = document.querySelector("#user-score");
 const cScore = document.querySelector("#comp-score");
 
 const generateCompChoice = ()=>{
-    const options = ["rock", "paper", "scissors"];
+    const options = ["Rock", "Paper", "Scissors"];
     const randIndx = Math.floor(Math.random()*3);
     return options[randIndx];
 };
@@ -42,14 +42,14 @@ const playGame = (userChoice) =>{
     }
     else{
         let userWin = true;
-        if(userChoice === "rock"){
-            userWin = (compChoice === "paper" ? false : true);
+        if(userChoice === "Rock"){
+            userWin = (compChoice === "Paper" ? false : true);
         }
-        else if(userChoice === "paper"){
-            userWin = (compChoice === "scissors" ? false : true);
+        else if(userChoice === "Paper"){
+            userWin = (compChoice === "Scissors" ? false : true);
         }
         else{
-            userWin = (compChoice === "rock" ? false : true);
+            userWin = (compChoice === "Rock" ? false : true);
         }
         showWinner(userWin, userChoice, compChoice);
     }
@@ -57,7 +57,8 @@ const playGame = (userChoice) =>{
 
 choices.forEach((choice) => {
     choice.addEventListener("click",() =>{
-        const userChoice = choice.getAttribute("id");
+        let userChoice = choice.getAttribute("id");
+        userChoice = userChoice[0].toUpperCase() + userChoice.slice(1);
         playGame(userChoice);
     })
 });
